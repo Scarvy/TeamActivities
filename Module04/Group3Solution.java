@@ -37,13 +37,13 @@ public class Group3Solution {
     @return a sum of integers
     */ 
     // @Scarvy
-    // public static Integer sumIntegers(List<Integer> numbers) {
-    //     Integer sum = 0;
-    //     for (int number : numbers) {
-    //         sum += number;
-    //     }
-    //     return sum;
-    // }
+    public static Integer sumIntegers(List<Integer> numbers) {
+        Integer sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        return sum;
+    }
 
     public static List<Book> stringToBook(List<String> listOfBookStrings) {
         List<Book> bookList = new ArrayList<>();
@@ -67,12 +67,12 @@ public class Group3Solution {
         System.out.println(evens2);
 
         // Reduce / Sum
-        // List<Integer> numbers2 = Arrays.asList(1,2,3,4,5);
-        // Integer sum = numbers2.stream().sum(); // or reduce(0, ()
-        // System.out.println(sum);
+        List<Integer> numbers2 = Arrays.asList(1,2,3,4,5);
+        Integer sum = numbers2.stream().mapToInt(Integer::intValue).sum();
+        System.out.println(sum);
 
-        // Integer sum_with_method = sumIntegers(numbers2);
-        // System.out.println(sum_with_method);
+        Integer sum_with_method = sumIntegers(numbers2);
+        System.out.println(sum_with_method);
 
         // map examples using stream
         List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
