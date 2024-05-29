@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Group3Solution {
     // Old Solution Method using a loop
@@ -70,6 +71,16 @@ public class Group3Solution {
         List<Integer> numbers2 = Arrays.asList(1,2,3,4,5);
         Integer sum = numbers2.stream().mapToInt(Integer::intValue).sum();
         System.out.println(sum);
+
+        // Some other ways to sum a list of integers in Java
+        int[] intergers2 = new int[] {1,2,3,4,5};
+        int sum2 = Arrays.stream(intergers2)
+            .sum();
+        System.out.println(sum2);
+
+        int sum3 = IntStream.of(1,2,3,4,5)
+            .sum();
+        System.out.println(sum3);
 
         Integer sum_with_method = sumIntegers(numbers2);
         System.out.println(sum_with_method);
