@@ -24,7 +24,7 @@ public class Flight implements Comparable<Flight> {
 
     @Override
     public int compareTo(Flight o) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return getFlightID().compareTo(o.getFlightID());
     }
 
     @Override
@@ -39,18 +39,19 @@ public class Flight implements Comparable<Flight> {
         Flight f2 = new Flight("American", 456, "AA");
         Flight f3 = new Flight("United", 789, "UA");
 
-        System.out.println(f1.compareTo(f2));
-        System.out.println(f2.compareTo(f3));
-        System.out.println(f3.compareTo(f1));
+        System.out.println(f1.compareTo(f2)); //  flight 1 > flight 2
+        System.out.println(f2.compareTo(f3)); // flight 2 < flight 3
+        System.out.println(f3.compareTo(f1)); // flight 3 > flight 1
 
         List<Flight> flights = new ArrayList<>();
         // can't use list.of() only, as it returns an immutable list, so we add one to new list
         flights.addAll(List.of(f1, f2, f3));
 
-
+        System.out.println("preSorted");
         System.out.println(flights);
 
-        flights.sort(null);
+        flights.sort(null); //if null is passed as parameter, it will sort the lst in place using the compareTo        
+        System.out.println("postSorted");
         System.out.println(flights);
 
         // TODO: Create a lambda expression to sort the flights by flight number

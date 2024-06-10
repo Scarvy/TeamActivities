@@ -17,6 +17,8 @@ public class StringComparableExamples {
         String b = "b";
         String A = "A";
         String B = "B";
+        String AB = "AB";
+        String AA = "AA";
 
         System.out.println(a.compareTo(b));
         System.out.println(a.compareTo(a));
@@ -28,6 +30,13 @@ public class StringComparableExamples {
         System.out.println();
         System.out.println(a.compareTo(A));
         System.out.println(A.compareTo(a));
+
+        System.out.println();
+        System.out.println(AA.compareTo(AB));
+
+        System.out.println("Apple".compareTo("Airline"));
+
+
 
     }
 
