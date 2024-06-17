@@ -1,3 +1,5 @@
+//class BoardGame
+
 package bg_arena_planner;
 
 import java.util.List;

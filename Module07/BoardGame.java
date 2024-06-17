@@ -1,3 +1,5 @@
+//record BoardGame
+
 public record BoardGame(String name, int id, int minPlayers, int maxPlayers, int minPlayTime,
         int maxPlayTime, double difficulty, int rank, double averageRating, int yearPublished) {
 

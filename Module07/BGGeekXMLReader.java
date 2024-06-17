@@ -28,7 +28,7 @@ public class BGGeekXMLReader {
     }
 
     public static SimpleBoardGame buildRecordFromMap(Map<String, String> map) {
-        String name = map.getOrDefault("name", "Unknown"); // discuss what does this do?
+        String name = map.getOrDefault("name", "Unknown"); // returns a default value
         String thumbnail = map.getOrDefault("thumbnail", "");
         String description = map.getOrDefault("description", "");
         int yearPublished = Integer.parseInt(map.getOrDefault("yearPublished", "0"));
@@ -54,12 +54,33 @@ public class BGGeekXMLReader {
                     current = new HashMap<>();
                 }
             } else if (qName.equalsIgnoreCase("name")) {
+                    String isPrimary = attributes.getValue("type");
+                    if (isPrimary != null && isPrimary.equals("primary")) {
+                        String name = attributes.getValue("value");
+                        current.put("name", name);
+                    }
+            } else if (qName.equalsIgnoreCase("yearPublished")) { // add yearPublished
                 String isPrimary = attributes.getValue("type");
-                if (isPrimary.equals("primary")) {
-                    String name = attributes.getValue("value");
-                    current.put("name", name);
+                if (isPrimary == null) {
+                    String yearPublished = "0";
+                } else if (isPrimary.equals("primary")) {
+                    String yearPublished = attributes.getValue("value");
+                    current.put("yearPublished", yearPublished);
                 }
-            } // add more for yearPublished here
+            }
+            // } else if (qName.equalsIgnoreCase("description")) { // add description
+            //     String isPrimary = attributes.getValue("type");
+            //     if (isPrimary.equals("primary")) {
+            //         String description = attributes.getValue("value");
+            //         current.put("description", description);
+            //     }
+            // } else if (qName.equalsIgnoreCase("thumbnail")) { // add thumbnail
+            //     String isPrimary = attributes.getValue("type");
+            //     if (isPrimary.equals("primary")) {
+            //         String thumbnail = attributes.getValue("value");
+            //         current.put("thumbnail", thumbnail);
+            //     }
+            // }
         }
 
         @Override
@@ -67,7 +88,12 @@ public class BGGeekXMLReader {
             if (qName.equalsIgnoreCase("item")) {
                 games.add(buildRecordFromMap(current));
                 current = null;
-            } // add an else that handles description and thumbnail
+            // add an else that handles description and thumbnail
+            } else {
+                if (current != null) {
+                    current.put(qName, buffer.toString()); //add the rest of the data of the game
+                }
+            }
         }
 
         @Override
